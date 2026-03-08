@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 43 33% 96%;
+    --foreground: 220 30% 12%;
+
+    --card: 43 33% 96%;
+    --card-foreground: 220 30% 12%;
+
+    --popover: 43 33% 96%;
+    --popover-foreground: 220 30% 12%;
+
+    --primary: 160 22% 46%;
+    --primary-foreground: 43 33% 96%;
+
+    --secondary: 210 26% 42%;
+    --secondary-foreground: 43 33% 96%;
+
+    --muted: 40 20% 90%;
+    --muted-foreground: 220 15% 45%;
+
+    --accent: 38 52% 66%;
+    --accent-foreground: 220 30% 12%;
+
+    --destructive: 5 50% 75%;
+    --destructive-foreground: 43 33% 96%;
+
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 160 22% 46%;
+
+    --radius: 0.75rem;
+
+    /* Custom Fintur tokens */
+    --ivory: 43 33% 96%;
+    --sage: 160 22% 46%;
+    --slate-blue: 210 26% 42%;
+    --gold: 38 52% 66%;
+    --clay-rose: 5 50% 75%;
+    --deep-navy: 220 45% 12%;
+    --charcoal: 220 20% 18%;
+
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+
+    --shadow-soft: 0 8px 40px rgba(0, 0, 0, 0.08);
+    --shadow-lifted: 0 12px 48px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+@layer components {
+  .fintur-card {
+    @apply rounded-2xl transition-all duration-300;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .fintur-card:hover {
+    box-shadow: var(--shadow-lifted);
+    transform: translateY(-4px);
+  }
+
+  .glass-nav {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: hsla(43, 33%, 96%, 0.85);
+  }
+}
