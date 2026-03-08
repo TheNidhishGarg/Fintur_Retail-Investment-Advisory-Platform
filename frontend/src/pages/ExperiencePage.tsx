@@ -19,7 +19,7 @@ export default function ExperiencePage() {
 
     const scrollRef = useRef<HTMLDivElement>(null);
     const ITEM_HEIGHT = 48;
-    const CONTAINER_HEIGHT = 280;
+    const CONTAINER_HEIGHT = 240;
     const VISIBLE_ITEMS = Math.floor(CONTAINER_HEIGHT / ITEM_HEIGHT); // 5
     const PADDING_ITEMS = Math.floor(VISIBLE_ITEMS / 2); // 2
     const YEARS = Array.from({ length: 2007 - 1950 + 1 }, (_, i) => 1950 + i);
@@ -137,15 +137,15 @@ export default function ExperiencePage() {
                                 <h1 className="font-serif text-[30px] text-[#0F1A2E] leading-tight font-bold">What year were you born?</h1>
                                 <p className="text-[#6B7A8D] text-[15px] mt-2 mb-10">This helps us tailor advice for your life stage</p>
 
-                                <div className="h-[280px] w-[160px] mx-auto overflow-hidden relative">
+                                <div className="h-[240px] w-[160px] mx-auto overflow-hidden relative">
                                     {/* Gradients */}
-                                    <div className="absolute top-0 left-0 right-0 h-[112px] z-10 pointer-events-none"
+                                    <div className="absolute top-0 left-0 right-0 h-[96px] z-10 pointer-events-none"
                                         style={{ background: "linear-gradient(to bottom, #F7F6F2 0%, transparent 100%)" }} />
-                                    <div className="absolute bottom-0 left-0 right-0 h-[112px] z-10 pointer-events-none"
+                                    <div className="absolute bottom-0 left-0 right-0 h-[96px] z-10 pointer-events-none"
                                         style={{ background: "linear-gradient(to top, #F7F6F2 0%, transparent 100%)" }} />
 
                                     {/* Highlight */}
-                                    <div className="absolute top-1/2 left-0 right-0 h-[48px] -translate-y-1/2 bg-[#5E8B7E]/10 rounded-xl border-y-2 border-[#5E8B7E] pointer-events-none" />
+                                    <div className="absolute left-0 right-0 h-[48px] bg-[#5E8B7E]/10 rounded-xl border-y-2 border-[#5E8B7E] pointer-events-none" style={{ top: "96px" }} />
 
                                     <div
                                         ref={scrollRef}
@@ -282,27 +282,19 @@ export default function ExperiencePage() {
                         </button>
                     ) : <div />}
 
-                    <div className="flex items-center gap-4">
-                        <button
-                            onClick={() => navigate("/features")}
-                            className="text-[#6B7A8D] hover:text-[#5E8B7E] transition-colors text-[14px] font-medium"
-                        >
-                            Skip
-                        </button>
-                        <button
-                            onClick={handleNext}
-                            disabled={isNextDisabled() || loading}
-                            className={`bg-[#5E8B7E] text-white px-8 py-3 rounded-full text-[15px] font-medium flex items-center gap-1 transition-all duration-300 shadow-lg shadow-[#5E8B7E]/25 ${isNextDisabled() || loading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#4A7A6D] hover:-translate-y-0.5"
-                                }`}
-                        >
-                            {loading ? "Saving..." : step === 3 ? "Let's Go →" : (
-                                <>
-                                    Continue
-                                    <ChevronRight size={18} />
-                                </>
-                            )}
-                        </button>
-                    </div>
+                    <button
+                        onClick={handleNext}
+                        disabled={isNextDisabled() || loading}
+                        className={`bg-[#5E8B7E] text-white px-8 py-3 rounded-full text-[15px] font-medium flex items-center gap-1 transition-all duration-300 shadow-lg shadow-[#5E8B7E]/25 ${isNextDisabled() || loading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#4A7A6D] hover:-translate-y-0.5"
+                            }`}
+                    >
+                        {loading ? "Saving..." : step === 3 ? "Let's Go →" : (
+                            <>
+                                Continue
+                                <ChevronRight size={18} />
+                            </>
+                        )}
+                    </button>
                 </div>
             </main>
 

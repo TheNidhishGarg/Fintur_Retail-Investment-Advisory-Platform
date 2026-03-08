@@ -206,7 +206,7 @@ export default function FeaturesPage() {
                     <button
                         onClick={() => {
                             clearAuth();
-                            navigate("/login");
+                            navigate("/");
                         }}
                         style={{
                             background: "none",
