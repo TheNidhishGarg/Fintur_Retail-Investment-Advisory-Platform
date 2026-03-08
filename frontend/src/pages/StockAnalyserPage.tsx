@@ -3,9 +3,6 @@ import { Search, TrendingUp, Loader2 } from "lucide-react";
 import axios from "axios";
 import { useAuthStore } from "../lib/store/authStore";
 
-const API = axios.create({
-    baseURL: (import.meta.env.VITE_API_URL as string) || "http://localhost:4000",
-});
 
 export default function StockAnalyserPage() {
     const [query, setQuery] = useState("");
@@ -20,8 +17,9 @@ export default function StockAnalyserPage() {
         setError(null);
         setReport(null);
         try {
-            const res = await API.post(
-                "/api/ai/analyze-stock",
+            const baseURL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+            const res = await axios.post(
+                `${baseURL}/api/ai/analyze-stock`,
                 { query },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
