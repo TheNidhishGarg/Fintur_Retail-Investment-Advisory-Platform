@@ -22,8 +22,9 @@ export default function StockAnalyserPage() {
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setReport(res.data.analysis);
-        } catch {
-            setError("Failed to analyze. Please try again.");
+        } catch (err: any) {
+            console.error("Stock analysis error:", err);
+            setError(err?.response?.data?.error || err?.message || "Failed to analyze. Please try again.");
         } finally {
             setLoading(false);
         }
