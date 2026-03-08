@@ -17,6 +17,7 @@ const equityCards = [
         title: "Stock Analyser",
         description:
             "Deep dive into any listed stock — financials, trends, and AI insights.",
+        route: "/stock-analyser",
     },
     {
         icon: BarChart2,
@@ -65,7 +66,7 @@ export default function FeaturesPage() {
     };
 
     const renderCard = (
-        card: { icon: React.ElementType; iconColor: string; title: string; description: string },
+        card: { icon: React.ElementType; iconColor: string; title: string; description: string; route?: string },
         index: number
     ) => {
         const Icon = card.icon;
@@ -76,7 +77,7 @@ export default function FeaturesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: index * 0.1 }}
                 style={cardStyle}
-                onClick={showToast}
+                onClick={() => card.route ? navigate(card.route) : showToast()}
                 onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLDivElement;
                     el.style.borderColor = "#5E8B7E";
@@ -113,20 +114,37 @@ export default function FeaturesPage() {
                 >
                     {card.description}
                 </p>
-                <span
-                    style={{
-                        display: "inline-block",
-                        marginTop: "16px",
-                        background: "rgba(214,185,123,0.15)",
-                        color: "#D6B97B",
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "11px",
-                        padding: "2px 8px",
-                        borderRadius: "9999px",
-                    }}
-                >
-                    Coming Soon
-                </span>
+                {card.route ? (
+                    <span
+                        style={{
+                            display: "inline-block",
+                            marginTop: "16px",
+                            background: "rgba(94,139,126,0.15)",
+                            color: "#5E8B7E",
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: "11px",
+                            padding: "2px 8px",
+                            borderRadius: "9999px",
+                        }}
+                    >
+                        Try it →
+                    </span>
+                ) : (
+                    <span
+                        style={{
+                            display: "inline-block",
+                            marginTop: "16px",
+                            background: "rgba(214,185,123,0.15)",
+                            color: "#D6B97B",
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: "11px",
+                            padding: "2px 8px",
+                            borderRadius: "9999px",
+                        }}
+                    >
+                        Coming Soon
+                    </span>
+                )}
             </motion.div>
         );
     };

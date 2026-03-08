@@ -54,7 +54,14 @@ export default function App() {
                         </ProtectedRoute>
                     }
                 />
-                <Route path="/stock-analyser" element={<StockAnalyserPage />} />
+                <Route
+                    path="/stock-analyser"
+                    element={
+                        <ProtectedRoute>
+                            <StockAnalyserPage />
+                        </ProtectedRoute>
+                    }
+                />
             </Routes>
         </BrowserRouter>
     );
