@@ -45,3 +45,8 @@ pydantic
 
 scipy
 python-dateutil
+
+# API server
+uvicorn
+fastapi
+python-multipart
