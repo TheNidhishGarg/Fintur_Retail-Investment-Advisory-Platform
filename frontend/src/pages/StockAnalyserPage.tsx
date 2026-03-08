@@ -3,6 +3,9 @@ import { Search, TrendingUp, Loader2 } from "lucide-react";
 import axios from "axios";
 import { useAuthStore } from "../lib/store/authStore";
 
+const BASE_URL = typeof window !== "undefined"
+    ? ((window as any).__VITE_API_URL__ || "http://localhost:4000")
+    : "http://localhost:4000";
 
 export default function StockAnalyserPage() {
     const [query, setQuery] = useState("");
@@ -17,9 +20,9 @@ export default function StockAnalyserPage() {
         setError(null);
         setReport(null);
         try {
-            const baseURL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+            const apiUrl = (import.meta as any).env?.VITE_API_URL || "http://localhost:4000";
             const res = await axios.post(
-                `${baseURL}/api/ai/analyze-stock`,
+                `${apiUrl}/api/ai/analyze-stock`,
                 { query },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -39,8 +42,6 @@ export default function StockAnalyserPage() {
             padding: "40px 24px",
         }}>
             <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-
-                {/* Header */}
                 <div style={{ marginBottom: "40px" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "8px" }}>
                         <TrendingUp size={28} color="#2D6A4F" />
@@ -53,7 +54,6 @@ export default function StockAnalyserPage() {
                     </p>
                 </div>
 
-                {/* Search Bar */}
                 <div style={{
                     background: "#fff",
                     borderRadius: "16px",
@@ -110,7 +110,6 @@ export default function StockAnalyserPage() {
                     </div>
                 </div>
 
-                {/* Error */}
                 {error && (
                     <div style={{
                         background: "#fff0f0",
@@ -124,7 +123,6 @@ export default function StockAnalyserPage() {
                     </div>
                 )}
 
-                {/* Loading State */}
                 {loading && (
                     <div style={{
                         background: "#fff",
@@ -140,7 +138,6 @@ export default function StockAnalyserPage() {
                     </div>
                 )}
 
-                {/* Report */}
                 {report && !loading && (
                     <div style={{
                         background: "#fff",
@@ -162,7 +159,6 @@ export default function StockAnalyserPage() {
                     </div>
                 )}
             </div>
-
             <style>{`
         @keyframes spin {
           from { transform: rotate(0deg); }
