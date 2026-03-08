@@ -6,6 +6,7 @@ import ExperiencePage from "./pages/ExperiencePage.tsx";
 import InvestorTypePage from "./pages/InvestorTypePage.tsx";
 import LearnPage from "./pages/LearnPage.tsx";
 import FeaturesPage from "./pages/FeaturesPage";
+import StockAnalyserPage from "./pages/StockAnalyserPage";
 import { useAuthStore } from "./lib/store/authStore.ts";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -53,6 +54,7 @@ export default function App() {
                         </ProtectedRoute>
                     }
                 />
+                <Route path="/stock-analyser" element={<StockAnalyserPage />} />
             </Routes>
         </BrowserRouter>
     );
